@@ -4,6 +4,18 @@
     align-items: center;
 }
 
+@mixin justify-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@mixin align-left {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 @mixin self-center {
     align-self: center;
     justify-self: center;

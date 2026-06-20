@@ -1,0 +1,75 @@
+@use '../abstracts/mixins' as mx;
+
+.body-settings {
+    background-color: white;
+    font-family: "almari-regular", sans-serif;
+}
+
+.settings-content {
+    padding-top: 114px;
+    padding-left: 173px;
+    padding-right: 173px;
+
+    h1 {
+        font-family: "red-rose", sans-serif;
+        font-size: 54px;
+        font-weight: 700;
+    }
+}
+
+.settings-main {
+    margin-top: 64px
+}
+
+.settings-selection {
+    @include mx.align-left;
+    flex-direction: column;
+    gap: 56px;
+}
+
+.settings-subtitle {
+    @include mx.justify-left;
+    gap: 8px;
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+.all-selectors {
+    @include mx.align-left;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.select-option {
+    @include mx.justify-left;
+    gap: 10px;
+    padding-left: 44px;
+
+    .selector {
+        height: 16px;
+        width: 16px;
+        border: solid black 2px;
+        border-radius: 50%;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    .active-selected {
+        display: none;
+    }
+
+    &.selected .active-selected {
+        display: block;
+        width: 0px;
+        height: 0px;
+        border: solid black 4px;
+        border-radius: 50%;
+        @include mx.self-center;
+        margin-top: 4px;
+    }
+}
