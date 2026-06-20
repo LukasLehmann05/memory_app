@@ -1,0 +1,22 @@
+@use '../abstracts/mixins' as mx;
+
+.index-content {
+    color: white;
+    height: 100dvh;
+    flex-direction: column;
+    gap: 8dvh;
+    font-family: "red-rose", sans-serif;
+    font-weight: 700;
+
+    @include mx.flex-center;
+
+    h1 {
+        font-size: 140px;
+    }
+
+    p {
+        font-family: "almari-regular", sans-serif;
+        font-weight: 400;
+        font-size: 48px;
+    }
+}

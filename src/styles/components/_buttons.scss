@@ -1,0 +1,45 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as mx;
+
+.main-button {
+    background-color: $secondary-yellow;
+    border: none;
+    padding: 20px;
+    gap: 20px;
+    cursor: pointer;
+    transition: all 200ms ease;
+
+    @include mx.flex-center;
+
+    p {
+        line-height: 0%;
+        font-family: "red-rose", sans-serif;
+        font-size: 40px;
+        color: black;
+    }
+
+    .main-button-controller {
+        transition: all 200ms ease;
+    }
+
+    .hover-main-button {
+        display: none;
+    }
+
+    &:hover .hover-main-button {
+        display: block;
+    }
+
+    &:hover .hover-hide-main-button {
+        display: none;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:hover .main-button-controller {
+        rotate: -26deg;
+        transition: all 200ms ease;
+    }
+}
