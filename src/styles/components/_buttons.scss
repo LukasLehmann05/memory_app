@@ -44,3 +44,18 @@
         transition: all 200ms ease;
     }
 }
+
+.exit-button {
+    padding: 16px 24px;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.code-vibe-button {
+    border: solid 1px #4DD5BC;
+    background-color: $button-bg-code-vibe;
+}

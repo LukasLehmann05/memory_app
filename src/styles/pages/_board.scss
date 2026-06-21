@@ -1,0 +1,56 @@
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as *;
+
+.body-board {
+    font-family: "red-rose", sans-serif;
+}
+
+.header-board {
+    margin-top: 41px;
+    @include mx.flex-between;
+    align-items: flex-end;
+    padding: 0px 112px;
+    margin-bottom: 54px;
+}
+
+.player-section {
+    @include mx.flex-center;
+    gap: 16px;
+
+    h1 {
+        font-size: 26px;
+        color: white;
+        font-weight: 400;
+    }
+
+    img {
+        height: 24px;
+        width: auto;
+    }
+}
+
+.player-points {
+    background-color: $button-bg-code-vibe;
+    padding: 17px 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.player {
+    @include mx.flex-center;
+    gap: 4px;
+    font-size: 24px;
+
+    img {
+        height: 24px;
+        width: auto;
+    }
+}
+
+.blue {
+    color: $color-blue;
+}
+
+.orange {
+    color: $color-orange;
+}
