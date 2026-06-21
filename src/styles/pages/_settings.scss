@@ -20,7 +20,9 @@
 }
 
 .settings-main {
-    margin-top: 64px
+    margin-top: 64px;
+    display: flex;
+    justify-content: space-between
 }
 
 .settings-selection {
@@ -111,4 +113,39 @@
 
 .rotate-180 {
     rotate: 180deg;
+}
+
+.preview-theme {
+    display: none;
+}
+
+.current {
+    display: block;
+}
+
+.user-selection {
+    display: flex;
+    gap: 16px;
+    background-color: #F6F6F6;
+    padding: 14px 20px;
+    font-size: 20px;
+    align-items: center;
+    margin-top: 45px;
+
+    .separator {
+        width: 8px;
+        background-color: $secondary-yellow;
+        rotate: 20deg;
+        height: 52px;
+    }
+
+    a {
+        padding: 14px 20px;
+        background-color: $secondary-yellow;
+        font-family: "red-rose", sans-serif;
+        display: flex;
+        gap: 8px;
+        color: black;
+        text-decoration: none;
+    }
 }

@@ -18,6 +18,18 @@ import { returnMarker } from './script/template'
 const allThemes: string[] = ["code-vibe", "food", "DA-Project", "gaming"]
 const allPlayer: string[] = ["blue", "orange"]
 const allSize: string[] = ["s", "m", "l"]
+const previewByTheme: Record<string, string> = {
+    "code-vibe": "theme-code",
+    "gaming": "theme-gaming",
+    "food": "theme-food",
+    "DA-Project": "theme-projects"
+}
+
+function init() {
+    initMarker()
+    initThemePreviewHover()
+    showThemePreview(selectedTheme)
+}
 
 function selectTheme(theme: string) {
     if (allThemes.includes(theme)) {
@@ -25,6 +37,7 @@ function selectTheme(theme: string) {
         selectedTheme = theme
         displaySelected(theme, "theme")
         addMarker("theme", theme)
+        showThemePreview(selectedTheme)
     }
 }
 
@@ -123,8 +136,33 @@ function initMarker() {
     addMarker("size", fieldSizeRaw)
 }
 
+function initThemePreviewHover() {
+    allThemes.forEach(theme => {
+        const themeOption = document.getElementById(theme)
+        if (!themeOption) {
+            return
+        }
+
+        themeOption.addEventListener("mouseenter", () => showThemePreview(theme))
+        themeOption.addEventListener("mouseleave", () => showThemePreview(selectedTheme))
+    })
+}
+
+function showThemePreview(theme: string) {
+    const activePreviewId = previewByTheme[theme]
+    if (!activePreviewId) {
+        return
+    }
+
+    Object.values(previewByTheme).forEach(previewId => {
+        document.getElementById(previewId)?.classList.remove("current")
+    })
+
+    document.getElementById(activePreviewId)?.classList.add("current")
+}
+
 window.selectTheme = selectTheme
 window.selectPlayer = selectPlayer
 window.selectBoardSize = selectBoardSize
 
-window.addEventListener("load",initMarker)
+window.addEventListener("load", init)
