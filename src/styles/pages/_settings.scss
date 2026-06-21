@@ -1,4 +1,5 @@
 @use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as *;
 
 .body-settings {
     background-color: white;
@@ -14,6 +15,7 @@
         font-family: "red-rose", sans-serif;
         font-size: 54px;
         font-weight: 700;
+        margin-left: 16px;
     }
 }
 
@@ -72,4 +74,41 @@
         @include mx.self-center;
         margin-top: 4px;
     }
+
+    &:hover {
+        font-weight: bold;
+    }
+}
+
+.underline-container {
+    display: flex;
+    align-items: center;
+}
+
+.underline-block {
+    width: 18px;
+    height: 18px;
+    background-color: $secondary-yellow;
+    rotate: 45deg;
+}
+
+.underline-line {
+    width: 220px;
+    background-color: $secondary-yellow;
+    height: 4px;
+}
+
+.underline-line-short {
+    width: 60px;
+    background-color: $secondary-yellow;
+    height: 4px;
+}
+
+.underline-title {
+    position: relative;
+    top: -8px;
+}
+
+.rotate-180 {
+    rotate: 180deg;
 }
