@@ -10,10 +10,10 @@ declare global {
 
 let selectedTheme: string = "code-vibe"
 let selectedPlayer: string = "blue"
-let selectedSize: number = 16
 let fieldSizeRaw = "s"
 
 import { returnMarker } from './script/template'
+import { addToLocalStorage } from './script/storage'
 
 const allThemes: string[] = ["code-vibe", "food", "DA-Project", "gaming"]
 const allPlayer: string[] = ["blue", "orange"]
@@ -26,7 +26,6 @@ const previewByTheme: Record<string, string> = {
 }
 
 function init() {
-    initMarker()
     initThemePreviewHover()
     showThemePreview(selectedTheme)
 }
@@ -38,6 +37,7 @@ function selectTheme(theme: string) {
         displaySelected(theme, "theme")
         addMarker("theme", theme)
         showThemePreview(selectedTheme)
+        addToLocalStorage("theme", theme)
     }
 }
 
@@ -47,33 +47,18 @@ function selectPlayer(player: string) {
         selectedPlayer = player
         displaySelected(player, "player")
         addMarker("player", player)
+        addToLocalStorage("player", player)
     }
 }
 
 function selectBoardSize(amount: string) {
-    switch (amount) {
-        case "s":
-            setBoardSizeVisual("s", 16)
-            break;
-        case "m":
-            setBoardSizeVisual("m", 24)
-            break;
-        case "l":
-            setBoardSizeVisual("l", 32)
-            break;
-
-        default:
-            setBoardSizeVisual("s", 16)
-            break;
+    if (allSize.includes(amount)) {
+        removeMarker("size", fieldSizeRaw)
+        fieldSizeRaw = amount
+        displaySelected(amount, "size")
+        addMarker("size", fieldSizeRaw)
+        addToLocalStorage("size",amount)
     }
-}
-
-function setBoardSizeVisual(sizeRaw: string, size: number) {
-    removeMarker("size", fieldSizeRaw)
-    selectedSize = 16
-    fieldSizeRaw = sizeRaw
-    displaySelected(sizeRaw, "size")
-    addMarker("size", fieldSizeRaw)
 }
 
 function displaySelected(id: string, group: string) {
@@ -166,3 +151,7 @@ window.selectPlayer = selectPlayer
 window.selectBoardSize = selectBoardSize
 
 window.addEventListener("load", init)
+
+if (document.body.classList.contains("body-settings")) {
+    window.addEventListener("DOMContentLoaded", initMarker)
+}

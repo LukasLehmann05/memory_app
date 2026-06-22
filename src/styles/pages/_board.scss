@@ -3,6 +3,8 @@
 
 .body-board {
     font-family: "red-rose", sans-serif;
+    @include mx.flex-center;
+    flex-direction: column;
 }
 
 .header-board {
@@ -11,6 +13,7 @@
     align-items: flex-end;
     padding: 0px 112px;
     margin-bottom: 54px;
+    width: calc(100% - 224px);
 }
 
 .player-section {
@@ -53,4 +56,14 @@
 
 .orange {
     color: $color-orange;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 0fr);
+    gap: 10px;
+}
+
+.grid-big {
+    grid-template-columns: repeat(6, 0fr);
 }

@@ -12,6 +12,10 @@
     <article class="settings-content">
         <header>
             <h1>Settings</h1>
+            <div class="underline-container underline-title">
+                <div class="underline-block"></div>
+                <div class="underline-line"></div>
+            </div>
         </header>
 
         <main class="settings-main">
@@ -23,28 +27,28 @@
                     </div>
 
                     <div class="all-selectors">
-                        <section class="select-option selected" onclick="selectTheme('code-vibe')" id="code-vibe">
+                        <section class="select-option theme-code selected" onclick="selectTheme('code-vibe')" id="code-vibe">
                             <div class="selector">
                                 <div class="active-selected"></div>
                             </div>
                             <p>Code Vibes Theme</p>
                         </section>
 
-                        <section class="select-option" onclick="selectTheme('gaming')" id="gaming">
+                        <section class="select-option theme-gaming" onclick="selectTheme('gaming')" id="gaming">
                             <div class="selector">
                                 <div class="active-selected"></div>
                             </div>
                             <p>Gaming Theme</p>
                         </section>
 
-                        <section class="select-option" onclick="selectTheme('DA-Project')" id="DA-Project">
+                        <section class="select-option theme-project" onclick="selectTheme('DA-Project')" id="DA-Project">
                             <div class="selector">
                                 <div class="active-selected"></div>
                             </div>
                             <p>DA Project Theme</p>
                         </section>
 
-                        <section class="select-option" onclick="selectTheme('food')" id="food">
+                        <section class="select-option theme-food" onclick="selectTheme('food')" id="food">
                             <div class="selector">
                                 <div class="active-selected"></div>
                             </div>
@@ -106,9 +110,28 @@
                     </div>
                 </section>
             </div>
+
+            <aside>
+                <img class="preview-theme current" id="theme-code" src="../img/code_vibe_main.svg" alt="code-vibe-preview">
+                <img class="preview-theme" id="theme-gaming" src="../img/game_main.svg" alt="gaming-theme-preview">
+                <img class="preview-theme" id="theme-food" src="../img/food_main.svg" alt="food-preview">
+                <img class="preview-theme" id="theme-projects" src="../img/da_projects_main.svg" alt="DA-project-preview">
+
+                <div class="user-selection">
+                    <p>Code Vibe</p>
+                    <div class="separator"></div>
+                    <p>Blue</p>
+                    <div class="separator"></div>
+                    <p>Board Size</p>
+                    <a href="./board.html">
+                        <img src="../img/play_icon.svg" alt="play icon">
+                        <p>Play</p>
+                    </a>
+                </div>
+            </aside>
         </main>
     </article>
-</body>
+</body> 
 
 <script type="module" src="../src/main.ts"></script>
 
