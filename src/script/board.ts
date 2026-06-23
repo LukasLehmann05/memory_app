@@ -15,6 +15,8 @@ let starterPlayer
 let starterSizeRaw
 let starterSize :number
 
+let openCards = []
+
 function initBoard() {
     getBoardData()
     buildBoard()

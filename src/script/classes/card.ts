@@ -15,6 +15,4 @@ export class Card {
         let cardTemplate = returnCard(src,card_path,id)
         render_container!.innerHTML += cardTemplate
     }
-
-
 }
