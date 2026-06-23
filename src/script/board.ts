@@ -10,12 +10,13 @@ declare global {
     }
 }
 
-let starterTheme :string |null
+let starterTheme: string | null
 let starterPlayer
 let starterSizeRaw
-let starterSize :number
+let starterSize: number
 
-let openCards = []
+let openCards: HTMLElement[] = []
+let lockedCards: HTMLElement[] = []
 
 function initBoard() {
     getBoardData()
@@ -49,10 +50,10 @@ function getStarterSize(size: string | null) {
 }
 
 function buildBoard() {
-    let cardPairs :string[] = returnCardPair(starterSize / 2, starterTheme)
+    let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme)
     for (let i = 0; i < cardPairs.length; i++) {
-        new Card(starterTheme,cardPairs[i] , `${i}`)
-        new Card(starterTheme,cardPairs[i] , i + "_back")
+        new Card(starterTheme, cardPairs[i], `${i}`)
+        new Card(starterTheme, cardPairs[i], i + "_back")
     }
 
     if (starterSize > 16) {
@@ -60,8 +61,49 @@ function buildBoard() {
     }
 }
 
-function toggle_card(id :string) {
-    document.getElementById(id)?.classList.toggle("flip-card")
+function toggle_card(id: string) {
+    let card = document.getElementById(id)
+    if (card && !lockedCards.includes(card)) {
+        openCards.push(card)
+        card?.classList.toggle("flip-card")
+
+        if (openCards.length == 2) {
+            checkCardMatch()
+        }
+    }
+}
+
+function checkCardMatch() {
+    const FIRST_CARD: HTMLElement = openCards[0]
+    const SECOND_CARD: HTMLElement = openCards[1]
+    const firstBackImage = FIRST_CARD.querySelector<HTMLImageElement>(".card__face--back")
+    const secondBackImage = SECOND_CARD.querySelector<HTMLImageElement>(".card__face--back")
+
+    if (firstBackImage && secondBackImage) {
+        const IS_MATCH = firstBackImage.getAttribute("src") === secondBackImage.getAttribute("src")
+        if (IS_MATCH) {
+            cardMatch()
+        } else {
+            cardsNotMatch()
+        }
+    }
+}
+
+function cardMatch() {
+    lockedCards.push(openCards[0])
+    lockedCards.push(openCards[1])
+
+    openCards = []
+}
+
+function cardsNotMatch() {
+    setTimeout(() => {
+        openCards.forEach(card => {
+            card.classList.toggle("flip-card")
+        });
+
+        openCards = []
+    }, 500);
 }
 
 if (document.body.classList.contains("body-board")) {
