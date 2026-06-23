@@ -2,6 +2,13 @@ import '../styles/style.scss'
 
 import { getFromLocalStorage } from './storage'
 import { Card } from './classes/card'
+import { returnCardPair } from './theme_data';
+
+declare global {
+    interface Window {
+        toggle_card: typeof toggle_card;
+    }
+}
 
 let starterTheme :string |null
 let starterPlayer
@@ -40,8 +47,10 @@ function getStarterSize(size: string | null) {
 }
 
 function buildBoard() {
-    for (let i = 0; i < starterSize; i++) {
-        new Card(starterTheme)
+    let cardPairs :string[] = returnCardPair(starterSize / 2, starterTheme)
+    for (let i = 0; i < cardPairs.length; i++) {
+        new Card(starterTheme,cardPairs[i] , `${i}`)
+        new Card(starterTheme,cardPairs[i] , i + "_back")
     }
 
     if (starterSize > 16) {
@@ -49,6 +58,12 @@ function buildBoard() {
     }
 }
 
+function toggle_card(id :string) {
+    document.getElementById(id)?.classList.toggle("flip-card")
+}
+
 if (document.body.classList.contains("body-board")) {
     window.addEventListener("DOMContentLoaded", initBoard)
 }
+
+window.toggle_card = toggle_card
