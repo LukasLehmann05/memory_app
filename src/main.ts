@@ -14,6 +14,9 @@ let fieldSizeRaw = "s"
 
 import { returnMarker } from './script/template'
 import { addToLocalStorage } from './script/storage'
+import { returnThemeName } from './script/theme_data'
+import { returnPlayerName } from './script/theme_data'
+import { returnBoardCardAmount } from './script/theme_data'
 
 const allThemes: string[] = ["code-vibe", "food", "DA-Project", "gaming"]
 const allPlayer: string[] = ["blue", "orange"]
@@ -28,6 +31,10 @@ const previewByTheme: Record<string, string> = {
 function init() {
     initThemePreviewHover()
     showThemePreview(selectedTheme)
+
+    setSelectedTheme()
+    setSelectedPlayer()
+    setSelectedBoardSize()
 }
 
 function selectTheme(theme: string) {
@@ -38,6 +45,7 @@ function selectTheme(theme: string) {
         addMarker("theme", theme)
         showThemePreview(selectedTheme)
         addToLocalStorage("theme", theme)
+        setSelectedTheme()
     }
 }
 
@@ -48,6 +56,7 @@ function selectPlayer(player: string) {
         displaySelected(player, "player")
         addMarker("player", player)
         addToLocalStorage("player", player)
+        setSelectedPlayer()
     }
 }
 
@@ -57,7 +66,8 @@ function selectBoardSize(amount: string) {
         fieldSizeRaw = amount
         displaySelected(amount, "size")
         addMarker("size", fieldSizeRaw)
-        addToLocalStorage("size",amount)
+        addToLocalStorage("size", amount)
+        setSelectedBoardSize()
     }
 }
 
@@ -144,6 +154,30 @@ function showThemePreview(theme: string) {
     })
 
     document.getElementById(activePreviewId)?.classList.add("current")
+}
+
+function setSelectedTheme() {
+    const SELECTION_THEME = document.getElementById("selection_theme")
+
+    if (SELECTION_THEME) {
+        SELECTION_THEME.innerText = returnThemeName(selectedTheme)
+    }
+}
+
+function setSelectedPlayer() {
+    const SELECTION_PLAYER = document.getElementById("selection_player")
+
+    if (SELECTION_PLAYER) {
+        SELECTION_PLAYER.innerText = returnPlayerName(selectedPlayer)
+    }
+}
+
+function setSelectedBoardSize() {
+    const SELECTION_SIZE = document.getElementById("selection_size")
+
+    if (SELECTION_SIZE) {
+        SELECTION_SIZE.innerText = returnBoardCardAmount(fieldSizeRaw)
+    }
 }
 
 window.selectTheme = selectTheme

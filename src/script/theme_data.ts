@@ -148,3 +148,42 @@ function requestCardPair(amount: number, array: string[]) {
 
     return selectedCards
 }
+
+export function returnThemeName(theme: string) {
+    switch (theme) {
+        case "code-vibe":
+            return "Code Vibe";
+        case "DA-Project":
+            return "DA Projects";
+        case "gaming":
+            return "Gaming";
+        case "food":
+            return "Food";
+        default:
+            return "code-vibe"
+    }
+}
+
+export function returnPlayerName(player: string) {
+    switch (player) {
+        case "blue":
+            return "Blue"
+        case "orange":
+            return "Orange"
+        default:
+            return "Blue"
+    }
+}
+
+export function returnBoardCardAmount(size: string) {
+    switch (size) {
+        case "s":
+            return "16 Cards"
+        case "m":
+            return "24 Cards"
+        case "l":
+            return "32 Cards"
+        default:
+            return "16 Cards"
+    }
+}
