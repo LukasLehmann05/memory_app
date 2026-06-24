@@ -50,3 +50,43 @@
         color: $color-blue-dark;
     }
 }
+
+.DA-Project-body-board {
+    background-color: white;
+}
+
+.DA-Project-header-board {
+    background-color: #F0F3F4;
+    align-items: center;
+    padding: 24px;
+    font-family: "Figtree", sans-serif;
+
+    & .player-points {
+        background-color: white;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1E7594;
+    }
+
+    button {
+        border: none;
+        background-color: #BFE5F2;
+        border-radius: 10px;
+        padding: 12px 20px;
+        color: #1E7594;
+    }
+
+    button img {
+        filter: brightness(0) saturate(100%) invert(35%) sepia(92%) saturate(440%) hue-rotate(150deg) brightness(90%) contrast(85%);
+    }
+
+    & .player-name {
+        display: none;
+    }
+}

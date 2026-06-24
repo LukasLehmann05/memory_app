@@ -49,3 +49,37 @@
         color: $color-blue-dark;
     }
 }
+
+.gaming-body-board {
+    background-color: $gaming-theme;
+}
+
+.gaming-header-board {
+    background-color: #545D75;
+    align-items: center;
+    padding: 24px;
+    font-family: "Orbitron", sans-serif;
+
+    & .player-points {
+        background-color: white;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    button {
+        border: solid 2px #E71C4F;
+        background-color: #ED1B7614;
+        border-radius: 10px;
+        padding: 12px 20px;
+    }
+
+    & .player-name {
+        display: none;
+    }
+}

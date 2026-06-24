@@ -5,6 +5,7 @@ import { Card } from './classes/card'
 import { returnCardPair } from './theme_data';
 import { returnPlayerIcon } from './theme_data';
 import { returnCodeVibe } from './theme_data';
+import { returnPawnIcons } from './theme_data';
 
 declare global {
     interface Window {
@@ -33,6 +34,10 @@ const POINTS_ORANGE = document.getElementById("points_orange")
 function initBoard() {
     getBoardData()
     buildBoard()
+
+    setPlayerPointIcons()
+    styleBoardBody()
+    styleBoardHeader()
 }
 
 function getBoardData() {
@@ -213,6 +218,32 @@ function checkForGameEnd() {
         setTimeout(() => {
             window.location.href = "../html/endscreen.html"
         }, 2000);
+    }
+}
+
+function setPlayerPointIcons() {
+    const ICON_BLUE = document.getElementById("player_board_icon_blue") as HTMLImageElement
+    const ICON_ORANGE = document.getElementById("player_board_icon_orange") as HTMLImageElement
+
+    if (starterTheme !== "code-vibe" && ICON_BLUE && ICON_ORANGE) {
+        ICON_BLUE.src = returnPawnIcons()[0]
+        ICON_ORANGE.src = returnPawnIcons()[1]
+    }
+}
+
+function styleBoardBody() {
+    const BODY_BOARD = document.getElementById("body_board")
+
+    if (BODY_BOARD) {
+        BODY_BOARD.classList.add(starterTheme + "-body-board")
+    }
+}
+
+function styleBoardHeader() {
+    const HEADER_BOARD = document.getElementById("board_header")
+
+    if (HEADER_BOARD) {
+        HEADER_BOARD.classList.add(starterTheme + "-header-board")
     }
 }
 
