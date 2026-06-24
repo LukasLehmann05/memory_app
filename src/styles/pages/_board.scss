@@ -111,3 +111,11 @@
     padding: 4px 8px;
     border-radius: 3px;
 }
+
+.exit-dialog {
+    padding: 40px;
+    @include mx.flex-center;
+    flex-direction: column;
+    justify-self: center;
+    margin-top: 25%;
+}

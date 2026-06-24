@@ -10,6 +10,8 @@ import { returnPawnIcons } from './theme_data';
 declare global {
     interface Window {
         toggle_card: typeof toggle_card;
+        openOverlay: typeof openOverlay;
+        closeOverlay: typeof closeOverlay;
     }
 }
 
@@ -30,6 +32,7 @@ let winner: string
 const ICONHEADER = document.getElementById("player_icon") as HTMLImageElement | null
 const POINTS_BLUE = document.getElementById("points_blue")
 const POINTS_ORANGE = document.getElementById("points_orange")
+const OVERLAY = document.getElementById("board_overlay") as HTMLDialogElement
 
 function initBoard() {
     getBoardData()
@@ -247,8 +250,22 @@ function styleBoardHeader() {
     }
 }
 
+function openOverlay() {
+    if (OVERLAY) {
+        OVERLAY.showModal()
+    }
+}
+
+function closeOverlay() {
+    if (OVERLAY) {
+        OVERLAY.close()
+    }
+}
+
 if (document.body.classList.contains("body-board")) {
     window.addEventListener("DOMContentLoaded", initBoard)
 }
 
 window.toggle_card = toggle_card
+window.openOverlay = openOverlay
+window.closeOverlay = closeOverlay
