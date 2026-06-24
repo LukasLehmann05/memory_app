@@ -84,6 +84,12 @@ const PLAYER_CODE = [
     "../img/themes/code_vibe/blue_icon.svg",
     "../img/themes/code_vibe/orange_icon.svg",
 ]
+
+const PAWN_ICONS = [
+    "../img/themes/player_pawn_blue.svg",
+    "../img/themes/player_pawn_orange.svg"
+]
+
 const PLAYER_OTHER = "../img/themes/playerIcon.svg"
 
 export function returnCardImage(theme: string | null) {
@@ -107,6 +113,10 @@ export function returnPlayerIcon() {
 
 export function returnCodeVibe() {
     return PLAYER_CODE
+}
+
+export function returnPawnIcons() {
+    return PAWN_ICONS
 }
 
 export function returnCardPair(amount: number, theme: string | null) {

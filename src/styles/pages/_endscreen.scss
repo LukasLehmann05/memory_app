@@ -20,4 +20,22 @@
 
 .final-score {
     font-size: 26px;
+    @include mx.flex-center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.points-display {
+    @include mx.flex-center;
+    gap: 32px;
+}
+
+.display-points {
+    @include mx.flex-center;
+    gap: 4px;
+
+    img {
+        height: 20px;
+        width: auto;
+    }
 }
