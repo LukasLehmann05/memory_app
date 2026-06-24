@@ -1,0 +1,39 @@
+@use '../abstracts/variables' as *;
+
+.code-vibe-points {
+    padding: 17px 20px;
+    background-color: #86E9D633;
+    gap: 32px;
+}
+
+.code-vibe-body {
+    font-family: "red-rose", sans-serif;
+
+    & .header-endscreen img {
+        display: block;
+        width: 990px;
+        height: auto;
+    }
+
+    & .header-endscreen h1 {
+        display: none;
+    }
+}
+
+.code-vibe-main-endscreen {
+    p {
+        font-size: 26px;
+        font-weight: 400;
+    }
+
+    span {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+
+    img {
+        height: 20px;
+        width: auto;
+    }
+}

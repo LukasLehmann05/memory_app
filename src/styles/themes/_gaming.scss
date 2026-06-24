@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as *;
+
+.gaming-points {
+    border-radius: 10px;
+    padding: 8px 16px;
+    background-color: white;
+    gap: 40px;
+}
+
+.gaming-body {
+    font-family: "Orbitron", sans-serif;
+    font-weight: 700;
+    background-color: $gaming-theme;
+
+    h1 {
+        color: #ED1B76;
+        font-size: 124px;
+        font-weight: 900;
+        letter-spacing: 7%;
+    }
+}
+
+.gaming-main-endscreen {
+    p {
+        font-weight: bold;
+        font-size: 28px;
+        letter-spacing: 7%;
+    }
+
+    span {
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    img {
+        height: 32px;
+        width: auto;
+    }
+
+    & .display-points {
+        gap: 8px;
+    }
+
+    & .display-orange {
+        color: $color-orange-dark;
+    }
+
+    & .display-blue {
+        color: $color-blue-dark;
+    }
+}

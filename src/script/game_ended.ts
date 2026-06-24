@@ -15,6 +15,9 @@ function initEndScreen() {
 function addOverviewContent() {
     setPlayerPoints()
     setPlayerIcons()
+    setPointDisplayStyle()
+    setBodyStyle()
+    setMainStyle()
 }
 
 function setPlayerPoints() {
@@ -22,11 +25,19 @@ function setPlayerPoints() {
     const POINTS_ORANGE = document.getElementById("points_orange")
 
     if (POINTS_BLUE) {
-        POINTS_BLUE.innerText = game_data.points_blue ? "BLUE " + game_data.points_blue : "BLUE 0"
+        if (game_data.theme == "code-vibe") {
+            POINTS_BLUE.innerText += game_data.points_blue ? "Blue " + game_data.points_blue : "Blue 0"
+        } else {
+            POINTS_BLUE.innerText += game_data.points_blue ? game_data.points_blue : "0"
+        }
     }
 
     if (POINTS_ORANGE) {
-        POINTS_ORANGE.innerText = game_data.points_orange ? "ORANGE " + game_data.points_orange : "ORANGE 0"
+        if (game_data.theme == "code-vibe") {
+            POINTS_ORANGE.innerText += game_data.points_orange ? "Orange " + game_data.points_orange : "Orange 0"
+        } else {
+             POINTS_ORANGE.innerText += game_data.points_orange ?  game_data.points_orange : "0"
+        }
     }
 }
 
@@ -37,6 +48,31 @@ function setPlayerIcons() {
     } else {
         PLAYER_POINTS_BLUE!.src = returnPawnIcons()[0]
         PLAYER_POINTS_ORANGE!.src = returnPawnIcons()[1]
+    }
+}
+
+function setBodyStyle() {
+    const BODY_ENDSCREEN = document.getElementById("body_endscreen")
+
+    if (BODY_ENDSCREEN) {
+        BODY_ENDSCREEN.classList.add(game_data.theme + "-body")
+    }
+}
+
+
+function setPointDisplayStyle() {
+    const POINTS_SECTION = document.getElementById("points_display_section")
+
+    if (POINTS_SECTION) {
+        POINTS_SECTION.classList.add(game_data.theme + "-points")
+    }
+}
+
+function setMainStyle() {
+    const MAIN_SECTION = document.getElementById("main_endscreen")
+
+    if (MAIN_SECTION) {
+        MAIN_SECTION.classList.add(game_data.theme + "-main-endscreen")
     }
 }
 

@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as *;
+
+.food-points {
+    background-color: #FFFFFF;
+    padding: 8px 16px;
+    gap: 40px;
+}
+
+.food-body {
+    background-color: $food-theme;
+    font-family: "KleeOne", sans-serif;
+
+    h1 {
+        color: white;
+        font-size: 130px;
+        font-weight: 600;
+    }
+}
+
+.food-main-endscreen {
+    p {
+        font-size: 42px;
+        font-weight: 600;
+    }
+
+    span {
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    img {
+        height: 30px;
+        width: auto;
+    }
+
+    & .display-points {
+        gap: 8px;
+    }
+
+    & .display-orange {
+        color: $color-orange-dark;
+    }
+
+    & .display-blue {
+        color: $color-blue-dark;
+    }
+}

@@ -4,7 +4,13 @@ $secondary-yellow: #F0EA6E;
 $button-bg-code-vibe: #86E9D633;
 
 $color-blue: #2BB1FF;
+$color-blue-dark: #097FC5;
 $color-orange: #F58E39;
+$color-orange-dark: #EA6900;
+
+$gaming-theme: #294F60;
+$project-theme: #1E7594;
+$food-theme: #F3832D;
 
 @font-face {
     font-family: "red-rose";
@@ -14,4 +20,19 @@ $color-orange: #F58E39;
 @font-face {
     font-family: "almari-regular";
     src: url("/fonts/Almarai/Almarai-Regular.ttf");
+}
+
+@font-face {
+    font-family: "figtree";
+    src: url("/fonts/Figtree/Figtree-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "KleeOne";
+    src: url("/fonts/Klee_One/KleeOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Orbitron";
+    src: url("/fonts/Orbitron/Orbitron-VariableFont_wght.ttf");
 }

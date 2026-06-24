@@ -1,0 +1,52 @@
+@use '../abstracts/variables' as *;
+
+.DA-Project-points {
+    padding: 8px 16px;
+    background-color: white;
+    gap: 40px;
+    border-radius: 10px;
+}
+
+.DA-Project-body {
+    background-color: $project-theme;
+    font-family: "Figtree", sans-serif;
+
+    h1 {
+        color: #FD5B4F;
+        font-size: 130px;
+        font-weight: 800;
+    }
+}
+
+.DA-Project-main-endscreen {
+    p {
+        font-size: 40px;
+        font-weight: 500;
+    }
+
+    span {
+        font-size: 38px;
+        font-weight: 700;
+    }
+
+    h1 {
+        color: #FD5B4F;
+    }
+
+    img {
+        height: 30px;
+        width: auto;
+    }
+
+    & .display-points {
+        gap: 8px;
+    }
+
+    & .display-orange {
+        color: $color-orange-dark;
+    }
+
+    & .display-blue {
+        color: $color-blue-dark;
+    }
+}
