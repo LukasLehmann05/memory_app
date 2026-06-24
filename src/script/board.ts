@@ -1,6 +1,6 @@
 import '../styles/style.scss'
 
-import { getFromLocalStorage } from './storage'
+import { addToLocalStorage, getFromLocalStorage } from './storage'
 import { Card } from './classes/card'
 import { returnCardPair } from './theme_data';
 import { returnPlayerIcon } from './theme_data';
@@ -24,6 +24,7 @@ let currentPlayer = "blue"
 
 let pointsBlue = 0
 let pointsOrange = 0
+let winner: string
 
 const ICONHEADER = document.getElementById("player_icon") as HTMLImageElement | null
 const POINTS_BLUE = document.getElementById("points_blue")
@@ -170,7 +171,6 @@ function awardPoint() {
     }
 }
 
-
 function nextPlayer() {
     setTimeout(() => {
         if (starterTheme == "code-vibe") {
@@ -189,10 +189,30 @@ function nextPlayer() {
     }, 300);
 }
 
+function setWinner() {
+    if (pointsBlue > pointsOrange) {
+        winner = "blue"
+    } else if (pointsBlue < pointsOrange) {
+        winner = "orange"
+    } else {
+        winner = "draw"
+    }
+}
+
 function checkForGameEnd() {
     if (starterSize === lockedCards.length) {
-        console.log("GAME ENDED");
+        setWinner()
+        addToLocalStorage("points_blue", pointsBlue.toString())
+        addToLocalStorage("points_orange", pointsOrange.toString())
+        addToLocalStorage("winner", winner)
+        if (starterTheme) {
+            addToLocalStorage("starter_theme", starterTheme)
+        }
 
+
+        setTimeout(() => {
+            window.location.href = "../html/endscreen.html"
+        }, 2000);
     }
 }
 

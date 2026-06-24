@@ -1,0 +1,23 @@
+@use '../abstracts/mixins' as mx;
+
+.body-endscreen {
+    color: white;
+    @include mx.justify-left;
+    flex-direction: column;
+    gap: 124px;
+}
+
+.header-endscreen {
+    padding-top: 20%;
+    img {
+        display: none;
+    }
+
+    h1 {
+        font-size: 124px;
+    }
+}
+
+.final-score {
+    font-size: 26px;
+}
