@@ -7,5 +7,9 @@ export function getFromLocalStorage() {
     let player = localStorage.getItem("player")
     let size = localStorage.getItem("size")
 
-    return [theme,player,size]
+    if (theme && player &&size) {
+        return [theme,player,size]
+    } else {
+        return ["code-vibe", "blue", "s"]
+    }
 }

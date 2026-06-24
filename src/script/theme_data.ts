@@ -80,6 +80,12 @@ const CARDS_GAMING = [
     "../img/themes/games/card_icons/snake.svg",
 ]
 
+const PLAYER_CODE = [
+    "../img/themes/code_vibe/blue_icon.svg",
+    "../img/themes/code_vibe/orange_icon.svg",
+]
+const PLAYER_OTHER = "../img/themes/playerIcon.svg"
+
 export function returnCardImage(theme: string | null) {
     switch (theme) {
         case "code-vibe":
@@ -93,6 +99,14 @@ export function returnCardImage(theme: string | null) {
         default:
             return `../img/themes/code_vibe/card_hidden.svg`
     }
+}
+
+export function returnPlayerIcon() {
+    return PLAYER_OTHER
+}
+
+export function returnCodeVibe() {
+    return PLAYER_CODE
 }
 
 export function returnCardPair(amount: number, theme: string | null) {
