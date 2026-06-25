@@ -155,3 +155,9 @@
         transition: all 200ms ease;
     }
 }
+
+.settings-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

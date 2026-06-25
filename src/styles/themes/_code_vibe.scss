@@ -37,3 +37,41 @@
         width: auto;
     }
 }
+
+.code-vibe-overlay {
+    font-family: "red-rose", sans-serif;
+
+    p {
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    & div {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 54px;
+    }
+
+    & button {
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    & .stay-button {
+        padding: 14px 24px;
+        background-color: #66CFBC;
+        color: white;
+        border: none;
+    }
+
+    & .quit-button {
+        padding: 12px 22px;
+        background-color: #86E9D624;
+        color: #4DD5BC;
+        border: solid 2px #4DD5BC;
+
+    }
+}

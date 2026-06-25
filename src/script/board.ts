@@ -12,6 +12,7 @@ declare global {
         toggle_card: typeof toggle_card;
         openOverlay: typeof openOverlay;
         closeOverlay: typeof closeOverlay;
+        quitGame: typeof quitGame;
     }
 }
 
@@ -41,6 +42,7 @@ function initBoard() {
     setPlayerPointIcons()
     styleBoardBody()
     styleBoardHeader()
+    styleOverlay()
 }
 
 function getBoardData() {
@@ -250,6 +252,12 @@ function styleBoardHeader() {
     }
 }
 
+function styleOverlay() {
+    if (OVERLAY) {
+        OVERLAY.classList.add(starterTheme + "-overlay")
+    }
+}
+
 function openOverlay() {
     if (OVERLAY) {
         OVERLAY.showModal()
@@ -262,6 +270,10 @@ function closeOverlay() {
     }
 }
 
+function quitGame() {
+    window.location.href = "../index.html"
+}
+
 if (document.body.classList.contains("body-board")) {
     window.addEventListener("DOMContentLoaded", initBoard)
 }
@@ -269,3 +281,4 @@ if (document.body.classList.contains("body-board")) {
 window.toggle_card = toggle_card
 window.openOverlay = openOverlay
 window.closeOverlay = closeOverlay
+window.quitGame = quitGame

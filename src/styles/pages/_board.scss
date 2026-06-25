@@ -114,8 +114,16 @@
 
 .exit-dialog {
     padding: 40px;
-    @include mx.flex-center;
-    flex-direction: column;
     justify-self: center;
     margin-top: 25%;
+    border: none;
+
+    p {
+        text-align: center
+    }
+}
+
+.exit-dialog[open] {
+    @include mx.flex-center;
+    flex-direction: column;
 }
