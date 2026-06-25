@@ -92,6 +92,29 @@ const PAWN_ICONS = [
 
 const PLAYER_OTHER = "../img/themes/playerIcon.svg"
 
+export const SLIDEOUT_DATA = {
+    "code-vibe": {
+        "blue": "../img/themes/player_pawn_blue.svg",
+        "orange": "../img/themes/player_pawn_orange.svg",
+        "draw": "../img/draw_green.svg"
+    },
+    "gaming": {
+        "blue": "../img/themes/pockal.svg",
+        "orange": "../img/themes/pockal.svg",
+        "draw": "../img/draw_red.svg"
+    },
+    "DA-Project": {
+        "blue": "../img/themes/pawn_blue_whiteoutline.svg",
+        "orange": "../img/themes/pawn_orange_whiteoutline.svg",
+        "draw": "../img/draw_orange.svg"
+    },
+    "food": {
+        "blue": "../img/themes/player_pawn_blue.svg",
+        "orange": "../img/themes/player_pawn_orange.svg",
+        "draw": "../img/draw_orange_bg.svg"
+    },
+}
+
 export function returnCardImage(theme: string | null) {
     switch (theme) {
         case "code-vibe":

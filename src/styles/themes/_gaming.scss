@@ -126,3 +126,36 @@
 
     }
 }
+
+.gaming-slide-out {
+    background-color: $gaming-theme;
+    top: 0%;
+    font-family: "Orbitron", sans-serif;
+
+    p {
+        font-weight: 400;
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 128px;
+        font-weight: bold;
+        color: #ED1B76;
+    }
+
+    img {
+        margin: 64px 0px;
+    }
+
+    button {
+        font-size: 20px;
+        font-weight: 700;
+        font-family: "Orbitron", sans-serif;
+        color: white;
+        background-color: #ED1B7614;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: solid 2px #E71C4F;
+        cursor: pointer;
+    }
+}

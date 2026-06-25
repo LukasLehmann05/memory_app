@@ -132,3 +132,39 @@
         color: #F3832D;
     }
 }
+
+.food-slide-out {
+    background-color: white;
+    top: 0%;
+    font-family: "KleeOne", sans-serif;
+
+    p {
+        font-weight: 400;
+        font-size: 40px;
+        color: #F3832D;
+    }
+
+    h2 {
+        font-size: 128px;
+        font-weight: 600;
+        color: #F3832D;
+    }
+
+    img {
+        margin: 64px 0px;
+        padding: 24px 30px;
+        background-color: #F7E6D5;
+    }
+
+    button {
+        font-size: 16px;
+        font-weight: 700;
+        font-family: "KleeOne", sans-serif;
+        color: white;
+        background-color: #F3832D;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+}

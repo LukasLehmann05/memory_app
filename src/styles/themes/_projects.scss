@@ -130,3 +130,34 @@
         color: white;
     }
 }
+
+.DA-Project-slide-out {
+    background-color: $project-theme;
+    top: 0%;
+
+    p {
+        font-weight: 400;
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 128px;
+        color: #FD5B4F;
+    }
+
+    img {
+        margin: 64px 0px;
+    }
+
+    button {
+        font-size: 20px;
+        font-weight: 700;
+        font-family: "Figtree", sans-serif;
+        color: #1E7594;
+        background-color: #BFE5F2;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+    }
+}
