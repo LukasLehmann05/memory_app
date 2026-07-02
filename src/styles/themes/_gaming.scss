@@ -77,6 +77,13 @@
         background-color: #ED1B7614;
         border-radius: 10px;
         padding: 12px 20px;
+
+        &:hover {
+            background-color: #ed1b7642;
+            border: solid 3px #E71C4F;
+            padding: 11px 19px;
+            box-shadow: 4px 4px 4px #ed1b7642;
+        }
     }
 
     & .player-name {
@@ -147,7 +154,7 @@
         margin: 64px 0px;
     }
 
-    button {
+    a {
         font-size: 20px;
         font-weight: 700;
         font-family: "Orbitron", sans-serif;

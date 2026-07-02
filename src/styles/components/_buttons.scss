@@ -58,4 +58,11 @@
 .code-vibe-button {
     border: solid 1px #4DD5BC;
     background-color: $button-bg-code-vibe;
+
+    &:hover {
+        background-color: #86E9D642;
+        border: solid 2px #4DD5BC;
+        padding: 15px 23px;
+        box-shadow: 4px 4px 4px #86E9D642;
+    }
 }

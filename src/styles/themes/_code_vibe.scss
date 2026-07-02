@@ -65,6 +65,12 @@
         background-color: #66CFBC;
         color: white;
         border: none;
+
+        &:hover {
+            background-color: #66CFBCB2;
+            border: solid 3px #66CFBC;
+            padding: 11px 21px;
+        }
     }
 
     & .quit-button {
@@ -72,6 +78,12 @@
         background-color: #86E9D624;
         color: #4DD5BC;
         border: solid 2px #4DD5BC;
+
+        &:hover {
+            background-color: #86E9D642;
+            border: solid 3px #4DD5BC;
+            padding: 11px 21px;
+        }
 
     }
 }
@@ -94,7 +106,7 @@
         margin: 64px 0px;
     }
 
-    button {
+    a {
         font-size: 24px;
         font-weight: 700;
         font-family: "red-rose", sans-serif;
@@ -103,5 +115,12 @@
         padding: 16px 24px;
         border: solid 1px #4DD5BC;
         cursor: pointer;
+        text-decoration: none;
+
+        &:hover {
+            background-color: #86E9D642;
+            border: solid 2px #4DD5BC;
+            padding: 15px 23px;
+        }
     }
 }
