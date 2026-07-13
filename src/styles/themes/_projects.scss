@@ -80,6 +80,17 @@
         border-radius: 10px;
         padding: 12px 20px;
         color: #1E7594;
+
+        &:hover {
+            background-color: #1E7594;
+            padding: 12px 20px;
+            border: none;
+            color: white;
+
+            img {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(27%) saturate(824%) hue-rotate(41deg) brightness(124%) contrast(109%);
+            }
+        }
     }
 
     button img {
@@ -123,11 +134,22 @@
     & .stay-button {
         background-color: #BFE5F2;
         color: #1E7594;
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+            background-color: #1E7594;
+            color: #BFE5F2;
+        }
     }
 
     & .quit-button {
         background-color: #FD8A81;
         color: white;
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+            background-color: #e55b50;
+        }
     }
 }
 
@@ -159,5 +181,9 @@
         border-radius: 10px;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 }

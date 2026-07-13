@@ -86,6 +86,17 @@
         img {
             filter: brightness(0) saturate(100%) invert(58%) sepia(25%) saturate(1411%) hue-rotate(341deg) brightness(98%) contrast(94%);
         }
+
+        &:hover {
+            background-color: #F3832D;
+            color: white;
+            border: none;
+            padding: 15px 23px;
+
+            img {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(27%) saturate(824%) hue-rotate(41deg) brightness(124%) contrast(109%);
+            }
+        }
     }
 
     & .player-name {
@@ -125,11 +136,20 @@
     & .stay-button {
         background-color: #FFAB3E;
         color: white;
+
+        &:hover {
+            background-color: #F3832D;
+        }
     }
 
     & .quit-button {
         background-color: #FFF9F2;
         color: #F3832D;
+
+        &:hover {
+            background-color: #F3832D;
+            color: white;
+        }
     }
 }
 
@@ -166,5 +186,9 @@
         border-radius: 10px;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            background-color: #FFAB3E;
+        }
     }
 }
