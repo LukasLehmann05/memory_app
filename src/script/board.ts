@@ -91,16 +91,50 @@ function setPlayerIcon() {
 
 function buildBoard() {
     let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme)
+    let deck: string[] = []
+
     for (let i = 1; i < cardPairs.length; i++) {
-        new Card(starterTheme, cardPairs[i], `${i}`)
-        new Card(starterTheme, cardPairs[i], i + "_back")
+        deck.push(cardPairs[i], cardPairs[i])
     }
+
+    let shuffledDeck = shuffleCards(deck)
+    let tries = 0
+
+    while (hasImmediatePair(shuffledDeck) && tries < 10) {
+        shuffledDeck = shuffleCards(deck)
+        tries += 1
+    }
+
+    shuffledDeck.forEach((cardPath, index) => {
+        new Card(starterTheme, cardPath, `${index + 1}`)
+    })
 
     if (starterSize > 16) {
         document.getElementById("card_container")?.classList.add("grid-big")
     }
 
     initPlayerIcon()
+}
+
+function shuffleCards(cards: string[]) {
+    let shuffled = [...cards]
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    }
+
+    return shuffled
+}
+
+function hasImmediatePair(cards: string[]) {
+    for (let i = 0; i < cards.length - 1; i++) {
+        if (cards[i] === cards[i + 1]) {
+            return true
+        }
+    }
+
+    return false
 }
 
 function initPlayerIcon() {
