@@ -92,6 +92,9 @@ const PAWN_ICONS = [
 
 const PLAYER_OTHER = "../img/themes/playerIcon.svg"
 
+/**
+ * Theme-to-winner image map for the end screen slideout.
+ */
 export const SLIDEOUT_DATA = {
     "code-vibe": {
         "blue": "../img/themes/player_pawn_blue.svg",
@@ -115,6 +118,11 @@ export const SLIDEOUT_DATA = {
     },
 }
 
+/**
+ * Returns the hidden card image for a given theme.
+ * @param theme Selected theme key.
+ * @returns Hidden card image path.
+ */
 export function returnCardImage(theme: string | null) {
     switch (theme) {
         case "code-vibe":
@@ -130,18 +138,37 @@ export function returnCardImage(theme: string | null) {
     }
 }
 
+/**
+ * Returns the shared player icon path used by non-code-vibe themes.
+ * @returns Player icon path.
+ */
 export function returnPlayerIcon() {
     return PLAYER_OTHER
 }
 
+/**
+ * Returns code-vibe player icon paths.
+ * @returns Array with blue and orange icon paths.
+ */
 export function returnCodeVibe() {
     return PLAYER_CODE
 }
 
+/**
+ * Returns pawn icon paths used by board and end screen views.
+ * @returns Array with blue and orange pawn paths.
+ */
 export function returnPawnIcons() {
     return PAWN_ICONS
 }
 
+/**
+ * Returns random card image paths for the selected theme.
+ * @param amount Amount of unique cards requested.
+ * @param theme Selected theme key.
+ * @param devMode Whether to produce deterministic developer output.
+ * @returns Requested card paths.
+ */
 export function returnCardPair(amount: number, theme: string | null, devMode = false) {
     switch (theme) {
         case "code-vibe":
@@ -162,6 +189,13 @@ export function returnCardPair(amount: number, theme: string | null, devMode = f
     }
 }
 
+/**
+ * Selects random card paths from a source array.
+ * @param amount Amount of unique cards requested.
+ * @param array Source card path array.
+ * @param devMode Whether to cycle deterministically.
+ * @returns Selected card paths.
+ */
 function requestCardPair(amount: number, array: string[], devMode = false) {
     let selectedCards: string[] = []
 
@@ -181,6 +215,11 @@ function requestCardPair(amount: number, array: string[], devMode = false) {
     return selectedCards
 }
 
+/**
+ * Converts internal theme key to display label.
+ * @param theme Theme key.
+ * @returns Human-readable theme name.
+ */
 export function returnThemeName(theme: string) {
     switch (theme) {
         case "code-vibe":
@@ -196,6 +235,11 @@ export function returnThemeName(theme: string) {
     }
 }
 
+/**
+ * Converts internal player key to display label.
+ * @param player Player key.
+ * @returns Human-readable player label.
+ */
 export function returnPlayerName(player: string) {
     switch (player) {
         case "blue":
@@ -207,6 +251,11 @@ export function returnPlayerName(player: string) {
     }
 }
 
+/**
+ * Converts size key to board card amount label.
+ * @param size Size key.
+ * @returns Display label for selected board size.
+ */
 export function returnBoardCardAmount(size: string) {
     switch (size) {
         case "s":

@@ -1,5 +1,10 @@
 import './styles/style.scss'
 
+/**
+ * Settings page entry module.
+ * Handles selecting theme, player, and board size and persists choices.
+ */
+
 declare global {
     interface Window {
         selectTheme: typeof selectTheme
@@ -37,6 +42,10 @@ function init() {
     setSelectedBoardSize()
 }
 
+/**
+ * Selects a theme and updates UI and persisted settings.
+ * @param theme Theme key to apply.
+ */
 function selectTheme(theme: string) {
     if (allThemes.includes(theme)) {
         removeMarker("theme", selectedTheme)
@@ -49,6 +58,10 @@ function selectTheme(theme: string) {
     }
 }
 
+/**
+ * Selects a player color and updates UI and persisted settings.
+ * @param player Player key to apply.
+ */
 function selectPlayer(player: string) {
     if (allPlayer.includes(player)) {
         removeMarker("player", selectedPlayer)
@@ -60,6 +73,10 @@ function selectPlayer(player: string) {
     }
 }
 
+/**
+ * Selects board size and updates UI and persisted settings.
+ * @param amount Board size key (s, m, l).
+ */
 function selectBoardSize(amount: string) {
     if (allSize.includes(amount)) {
         removeMarker("size", fieldSizeRaw)
@@ -71,6 +88,11 @@ function selectBoardSize(amount: string) {
     }
 }
 
+/**
+ * Applies selected styling to a control group and clears previous selection.
+ * @param id Selected element id.
+ * @param group Selection group name.
+ */
 function displaySelected(id: string, group: string) {
     if (group == "player") {
         removeOldPlayer(id)
@@ -82,6 +104,10 @@ function displaySelected(id: string, group: string) {
     document.getElementById(id)?.classList.add("selected")
 }
 
+/**
+ * Removes selected style from all non-selected player options.
+ * @param id Selected player id.
+ */
 function removeOldPlayer(id: string) {
     allPlayer.forEach(player => {
         if (id !== player) {
@@ -93,6 +119,10 @@ function removeOldPlayer(id: string) {
     });
 }
 
+/**
+ * Removes selected style from all non-selected theme options.
+ * @param id Selected theme id.
+ */
 function removeOldTheme(id: string) {
     allThemes.forEach(theme => {
         if (id !== theme) {
@@ -104,6 +134,10 @@ function removeOldTheme(id: string) {
     });
 }
 
+/**
+ * Removes selected style from all non-selected board size options.
+ * @param id Selected size id.
+ */
 function removeOldSize(id: string) {
     allSize.forEach(size => {
         if (id !== size) {
@@ -115,22 +149,38 @@ function removeOldSize(id: string) {
     });
 }
 
+/**
+ * Appends selection marker markup to the selected option.
+ * @param group Marker group name.
+ * @param item Selected option id.
+ */
 function addMarker(group: string, item: string) {
     let generatedID = group + "_" + item
     let template = returnMarker(generatedID)
     document.getElementById(item)!.innerHTML += template
 }
 
+/**
+ * Removes an existing marker for the given group and option.
+ * @param group Marker group name.
+ * @param item Option id.
+ */
 function removeMarker(group: string, item: string) {
     document.getElementById(group + "_" + item)?.remove()
 }
 
+/**
+ * Creates initial markers for stored selections.
+ */
 function initMarker() {
     addMarker("theme", selectedTheme)
     addMarker("player", selectedPlayer)
     addMarker("size", fieldSizeRaw)
 }
 
+/**
+ * Adds hover interactions to preview theme cards.
+ */
 function initThemePreviewHover() {
     allThemes.forEach(theme => {
         const themeOption = document.getElementById(theme)
@@ -143,6 +193,10 @@ function initThemePreviewHover() {
     })
 }
 
+/**
+ * Switches the active theme preview panel.
+ * @param theme Theme key whose preview should be shown.
+ */
 function showThemePreview(theme: string) {
     const activePreviewId = previewByTheme[theme]
     if (!activePreviewId) {
@@ -156,6 +210,9 @@ function showThemePreview(theme: string) {
     document.getElementById(activePreviewId)?.classList.add("current")
 }
 
+/**
+ * Updates the displayed selected theme label.
+ */
 function setSelectedTheme() {
     const SELECTION_THEME = document.getElementById("selection_theme")
 
@@ -164,6 +221,9 @@ function setSelectedTheme() {
     }
 }
 
+/**
+ * Updates the displayed selected player label.
+ */
 function setSelectedPlayer() {
     const SELECTION_PLAYER = document.getElementById("selection_player")
 
@@ -172,6 +232,9 @@ function setSelectedPlayer() {
     }
 }
 
+/**
+ * Updates the displayed selected board size label.
+ */
 function setSelectedBoardSize() {
     const SELECTION_SIZE = document.getElementById("selection_size")
 

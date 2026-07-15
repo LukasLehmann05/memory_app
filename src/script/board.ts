@@ -1,5 +1,10 @@
 import '../styles/style.scss'
 
+/**
+ * Board page entry module.
+ * Builds the memory board, manages turns, and handles match scoring.
+ */
+
 import { addToLocalStorage, getFromLocalStorage } from './storage'
 import { Card } from './classes/card'
 import { returnCardPair } from './theme_data';
@@ -29,13 +34,16 @@ let currentPlayer = ""
 let pointsBlue = 0
 let pointsOrange = 0
 let winner: string
-const devMode = true
+const devMode = false
 
 const ICONHEADER = document.getElementById("player_icon") as HTMLImageElement | null
 const POINTS_BLUE = document.getElementById("points_blue")
 const POINTS_ORANGE = document.getElementById("points_orange")
 const OVERLAY = document.getElementById("board_overlay") as HTMLDialogElement
 
+/**
+ * Initializes board state and theme-specific styling.
+ */
 function initBoard() {
     getBoardData()
     buildBoard()
@@ -46,6 +54,9 @@ function initBoard() {
     styleOverlay()
 }
 
+/**
+ * Reads persisted settings and applies initial player state.
+ */
 function getBoardData() {
     let data = getFromLocalStorage()
 
@@ -57,6 +68,10 @@ function getBoardData() {
     setPlayerIcon()
 }
 
+/**
+ * Converts size key to board card count.
+ * @param size Size key from storage.
+ */
 function getStarterSize(size: string | null) {
     switch (size) {
         case "s":
@@ -74,6 +89,9 @@ function getStarterSize(size: string | null) {
     }
 }
 
+/**
+ * Updates the current player header icon based on active theme.
+ */
 function setPlayerIcon() {
     if (starterTheme == "code-vibe" && ICONHEADER) {
         if (currentPlayer == "blue") {
@@ -90,6 +108,9 @@ function setPlayerIcon() {
     }
 }
 
+/**
+ * Creates the board DOM using a shuffled deck.
+ */
 function buildBoard() {
     let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme, devMode)
     let deck: string[] = []
@@ -121,6 +142,11 @@ function buildBoard() {
     initPlayerIcon()
 }
 
+/**
+ * Shuffles a card array using Fisher-Yates.
+ * @param cards Input card paths.
+ * @returns Shuffled card paths.
+ */
 function shuffleCards(cards: string[]) {
     let shuffled = [...cards]
 
@@ -132,6 +158,11 @@ function shuffleCards(cards: string[]) {
     return shuffled
 }
 
+/**
+ * Checks whether any adjacent cards form an immediate pair.
+ * @param cards Deck order to validate.
+ * @returns True when two neighboring cards match.
+ */
 function hasImmediatePair(cards: string[]) {
     for (let i = 0; i < cards.length - 1; i++) {
         if (cards[i] === cards[i + 1]) {
@@ -142,6 +173,9 @@ function hasImmediatePair(cards: string[]) {
     return false
 }
 
+/**
+ * Adds initial player color class for non-code-vibe themes.
+ */
 function initPlayerIcon() {
     if (starterTheme !== "code-vibe") {
         if (starterPlayer == "blue") {
@@ -156,6 +190,10 @@ function initPlayerIcon() {
     }
 }
 
+/**
+ * Flips a card and triggers pair checking when two are open.
+ * @param id Card button id.
+ */
 function toggle_card(id: string) {
     let card = document.getElementById(id)
     if (card && !lockedCards.includes(card)) {
@@ -168,6 +206,9 @@ function toggle_card(id: string) {
     }
 }
 
+/**
+ * Compares the two open cards and routes to the matching outcome.
+ */
 function checkCardMatch() {
     const FIRST_CARD: HTMLElement = openCards[0]
     const SECOND_CARD: HTMLElement = openCards[1]
@@ -188,6 +229,9 @@ function checkCardMatch() {
     nextPlayer()
 }
 
+/**
+ * Locks matched cards and updates score/end-state checks.
+ */
 function cardMatch() {
     lockedCards.push(openCards[0])
     lockedCards.push(openCards[1])
@@ -198,6 +242,9 @@ function cardMatch() {
     checkForGameEnd()
 }
 
+/**
+ * Flips non-matching cards back after a short delay.
+ */
 function cardsNotMatch() {
     setTimeout(() => {
         openCards.forEach(card => {
@@ -208,6 +255,9 @@ function cardsNotMatch() {
     }, 500);
 }
 
+/**
+ * Awards a point to the active player and updates UI.
+ */
 function awardPoint() {
     if (currentPlayer == "blue") {
         pointsBlue += 1
@@ -222,6 +272,9 @@ function awardPoint() {
     }
 }
 
+/**
+ * Switches to the next player and refreshes current player icon styling.
+ */
 function nextPlayer() {
     setTimeout(() => {
         if (starterTheme == "code-vibe") {
@@ -240,6 +293,9 @@ function nextPlayer() {
     }, 300);
 }
 
+/**
+ * Calculates winner from total player points.
+ */
 function setWinner() {
     if (pointsBlue > pointsOrange) {
         winner = "blue"
@@ -250,6 +306,9 @@ function setWinner() {
     }
 }
 
+/**
+ * Persists match result and navigates to end screen when board is complete.
+ */
 function checkForGameEnd() {
     if (starterSize === lockedCards.length) {
         setWinner()
@@ -267,6 +326,9 @@ function checkForGameEnd() {
     }
 }
 
+/**
+ * Sets scoreboard icons for themes that use pawn icons.
+ */
 function setPlayerPointIcons() {
     const ICON_BLUE = document.getElementById("player_board_icon_blue") as HTMLImageElement
     const ICON_ORANGE = document.getElementById("player_board_icon_orange") as HTMLImageElement
@@ -277,6 +339,9 @@ function setPlayerPointIcons() {
     }
 }
 
+/**
+ * Applies current theme class to board body.
+ */
 function styleBoardBody() {
     const BODY_BOARD = document.getElementById("body_board")
 
@@ -285,6 +350,9 @@ function styleBoardBody() {
     }
 }
 
+/**
+ * Applies current theme class to board header.
+ */
 function styleBoardHeader() {
     const HEADER_BOARD = document.getElementById("board_header")
 
@@ -293,24 +361,36 @@ function styleBoardHeader() {
     }
 }
 
+/**
+ * Applies current theme class to board overlay dialog.
+ */
 function styleOverlay() {
     if (OVERLAY) {
         OVERLAY.classList.add(starterTheme + "-overlay")
     }
 }
 
+/**
+ * Opens the board menu overlay.
+ */
 function openOverlay() {
     if (OVERLAY) {
         OVERLAY.showModal()
     }
 }
 
+/**
+ * Closes the board menu overlay.
+ */
 function closeOverlay() {
     if (OVERLAY) {
         OVERLAY.close()
     }
 }
 
+/**
+ * Returns to the landing page.
+ */
 function quitGame() {
     window.location.href = "../index.html"
 }

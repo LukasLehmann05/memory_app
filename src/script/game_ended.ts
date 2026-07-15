@@ -1,4 +1,9 @@
 import '../styles/style.scss'
+
+/**
+ * End screen entry module.
+ * Renders final game summary, winner state, and themed styling.
+ */
 import { getMatchData } from "./storage";
 import { returnPawnIcons } from './theme_data';
 import { returnCodeVibe } from './theme_data';
@@ -13,12 +18,18 @@ const SLIDEOUT_IMG = document.getElementById("slideout_img") as HTMLImageElement
 const TITLE_WINNER = document.getElementById("winner_title") as HTMLTitleElement
 const WINNER_UPPER_TEXT = document.getElementById("winner_upper_text") as HTMLParagraphElement
 
+/**
+ * Initializes end screen content.
+ */
 function initEndScreen() {
     console.log(game_data);
 
     addOverviewContent()
 }
 
+/**
+ * Populates all result overview sections.
+ */
 function addOverviewContent() {
     setPlayerPoints()
     setPlayerIcons()
@@ -33,6 +44,9 @@ function addOverviewContent() {
     }
 }
 
+/**
+ * Writes player point totals to the end screen.
+ */
 function setPlayerPoints() {
     const POINTS_BLUE = document.getElementById("points_blue")
     const POINTS_ORANGE = document.getElementById("points_orange")
@@ -54,6 +68,9 @@ function setPlayerPoints() {
     }
 }
 
+/**
+ * Sets player icon assets based on selected theme.
+ */
 function setPlayerIcons() {
     if (game_data.theme == "code-vibe") {
         PLAYER_POINTS_BLUE!.src = returnCodeVibe()[0]
@@ -64,6 +81,9 @@ function setPlayerIcons() {
     }
 }
 
+/**
+ * Sets winner headline and optional winner visuals.
+ */
 function setWinnerTitle() {
     if (game_data.winner == "draw") {
         WINNER_UPPER_TEXT.innerText = "It's a"
@@ -79,6 +99,9 @@ function setWinnerTitle() {
     }
 }
 
+/**
+ * Applies theme class to end screen body.
+ */
 function setBodyStyle() {
     const BODY_ENDSCREEN = document.getElementById("body_endscreen")
 
@@ -88,6 +111,9 @@ function setBodyStyle() {
 }
 
 
+/**
+ * Applies theme class to points section.
+ */
 function setPointDisplayStyle() {
     const POINTS_SECTION = document.getElementById("points_display_section")
 
@@ -96,6 +122,9 @@ function setPointDisplayStyle() {
     }
 }
 
+/**
+ * Applies theme class to main result section.
+ */
 function setMainStyle() {
     const MAIN_SECTION = document.getElementById("main_endscreen")
 
@@ -104,6 +133,9 @@ function setMainStyle() {
     }
 }
 
+/**
+ * Applies slideout styling and starts delayed reveal.
+ */
 function setSlideOutStyle() {
     setTimeout(() => {
         if (SLIDEOUT) {
@@ -113,6 +145,9 @@ function setSlideOutStyle() {
     }, 2000);
 }
 
+/**
+ * Chooses slideout image based on theme and winner.
+ */
 function setSlideOutImg() {
     type WinnerKey = "blue" | "orange" | "draw";
 
