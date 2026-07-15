@@ -163,7 +163,6 @@
     }
 
     h2 {
-        font-size: 128px;
         color: #FD5B4F;
     }
 
@@ -185,5 +184,26 @@
         &:hover {
             transform: scale(1.1);
         }
+    }
+}
+
+.DA-Project-blue {
+    h2 {
+        font-size: 80px;
+        color: #FFFFFF;
+    }
+}
+
+.DA-Project-orange {
+    h2 {
+        font-size: 80px;
+        color: #FFFFFF;
+    }
+}
+
+.DA-Project-draw {
+    h2 {
+        font-size: 128px;
+        color: #FD5B4F;
     }
 }

@@ -98,7 +98,6 @@
     }
 
     h2 {
-        font-size: 128px;
         color: #4DD5BC;
     }
 
@@ -122,5 +121,33 @@
             border: solid 2px #4DD5BC;
             padding: 15px 23px;
         }
+    }
+}
+
+.confetti {
+    display: none;
+    margin: 0px !important;
+    position: absolute;
+    top: 0px;
+}
+
+.code-vibe-blue {
+    h2 {
+        font-size: 60px;
+        color: #2298DB;
+    }
+}
+
+.code-vibe-orange {
+    h2 {
+        font-size: 60px;
+        color: #F58E39;
+    }
+}
+
+.code-vibe-draw {
+    h2 {
+        font-size: 128px;
+        color: #4DD5BC;
     }
 }

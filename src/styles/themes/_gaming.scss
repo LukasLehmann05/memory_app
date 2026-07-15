@@ -123,6 +123,13 @@
         background-color: #ED1B76;
         color: white;
         border: none;
+
+        &:hover {
+            padding: 10px 18px;
+            background-color: #ED1B7614;
+            color: #ED1B76;
+            border: solid 2px #E71C4F;
+        }
     }
 
     & .quit-button {
@@ -131,6 +138,12 @@
         color: #ED1B76;
         border: solid 2px #E71C4F;
 
+        &:hover {
+            padding: 14px 24px;
+            background-color: #ED1B76;
+            color: white;
+            border: none;
+        }
     }
 }
 
@@ -145,7 +158,6 @@
     }
 
     h2 {
-        font-size: 128px;
         font-weight: bold;
         color: #ED1B76;
     }
@@ -169,5 +181,26 @@
             padding: 11px 19px;
             border: solid 3px #E71C4F;
         }
+    }
+}
+
+.gaming-blue {
+    h2 {
+        font-size: 64px;
+        color: #2298DB;
+    }
+}
+
+.gaming-orange {
+    h2 {
+       font-size: 64px; 
+       color: #EA6900;
+    }
+}
+
+.gaming-draw {
+    h2 {
+        font-size: 128px;
+        color: #ED1B76;
     }
 }

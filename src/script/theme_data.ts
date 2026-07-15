@@ -142,28 +142,37 @@ export function returnPawnIcons() {
     return PAWN_ICONS
 }
 
-export function returnCardPair(amount: number, theme: string | null) {
+export function returnCardPair(amount: number, theme: string | null, devMode = false) {
     switch (theme) {
         case "code-vibe":
-            let requestedCards = requestCardPair(amount, CARDS_CODE_VIBE)
+            let requestedCards = requestCardPair(amount, CARDS_CODE_VIBE, devMode)
             return requestedCards
         case "DA-Project":
-            let requestedCards2 = requestCardPair(amount, CARDS_PROJECTS)
+            let requestedCards2 = requestCardPair(amount, CARDS_PROJECTS, devMode)
             return requestedCards2
         case "food":
-            let requestedCards3 = requestCardPair(amount, CARDS_FOOD)
+            let requestedCards3 = requestCardPair(amount, CARDS_FOOD, devMode)
             return requestedCards3
         case "gaming":
-            let requestedCards4 = requestCardPair(amount, CARDS_GAMING)
+            let requestedCards4 = requestCardPair(amount, CARDS_GAMING, devMode)
             return requestedCards4
         default:
-            let requestedCardsDefault = requestCardPair(amount, CARDS_CODE_VIBE)
+            let requestedCardsDefault = requestCardPair(amount, CARDS_CODE_VIBE, devMode)
             return requestedCardsDefault
     }
 }
 
-function requestCardPair(amount: number, array: string[]) {
+function requestCardPair(amount: number, array: string[], devMode = false) {
     let selectedCards: string[] = []
+
+    if (devMode) {
+        for (let i = 0; i <= amount; i++) {
+            selectedCards.push(array[i % array.length])
+        }
+
+        return selectedCards
+    }
+
     for (let i = 0; i <= amount; i++) {
         let randomCard = array[Math.floor(Math.random() * array.length)]
         selectedCards.push(randomCard)

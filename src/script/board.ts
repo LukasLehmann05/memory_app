@@ -24,11 +24,12 @@ let starterSize: number
 let openCards: HTMLElement[] = []
 let lockedCards: HTMLElement[] = []
 
-let currentPlayer = "blue"
+let currentPlayer = ""
 
 let pointsBlue = 0
 let pointsOrange = 0
 let winner: string
+const devMode = true
 
 const ICONHEADER = document.getElementById("player_icon") as HTMLImageElement | null
 const POINTS_BLUE = document.getElementById("points_blue")
@@ -77,10 +78,10 @@ function setPlayerIcon() {
     if (starterTheme == "code-vibe" && ICONHEADER) {
         if (currentPlayer == "blue") {
             currentPlayer = "orange"
-            ICONHEADER.src = returnCodeVibe()[0]
+            ICONHEADER.src = returnCodeVibe()[1]
         } else if (currentPlayer == "orange" && ICONHEADER) {
             currentPlayer = "blue"
-            ICONHEADER.src = returnCodeVibe()[1]
+            ICONHEADER.src = returnCodeVibe()[0]
         }
     } else {
         if (ICONHEADER) {
@@ -90,19 +91,23 @@ function setPlayerIcon() {
 }
 
 function buildBoard() {
-    let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme)
+    let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme, devMode)
     let deck: string[] = []
 
     for (let i = 1; i < cardPairs.length; i++) {
         deck.push(cardPairs[i], cardPairs[i])
     }
 
-    let shuffledDeck = shuffleCards(deck)
-    let tries = 0
+    let shuffledDeck = [...deck]
 
-    while (hasImmediatePair(shuffledDeck) && tries < 10) {
+    if (!devMode) {
         shuffledDeck = shuffleCards(deck)
-        tries += 1
+        let tries = 0
+
+        while (hasImmediatePair(shuffledDeck) && tries < 10) {
+            shuffledDeck = shuffleCards(deck)
+            tries += 1
+        }
     }
 
     shuffledDeck.forEach((cardPath, index) => {
@@ -178,6 +183,8 @@ function checkCardMatch() {
         }
     }
 
+    console.log(currentPlayer);
+    
     nextPlayer()
 }
 

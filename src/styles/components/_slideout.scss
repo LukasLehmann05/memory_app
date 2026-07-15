@@ -11,4 +11,9 @@
 
     @include mx.flex-center;
     flex-direction: column;
+
+    img {
+        min-height: 200px;
+        width: auto;
+    }
 }

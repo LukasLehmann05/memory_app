@@ -6,12 +6,16 @@ import { SLIDEOUT_DATA } from './theme_data';
 
 let game_data = getMatchData()
 
-const PLAYER_POINTS_BLUE = document.getElementById("player_blue") as HTMLImageElement | null
-const PLAYER_POINTS_ORANGE = document.getElementById("player_orange") as HTMLImageElement | null
+const PLAYER_POINTS_BLUE = document.getElementById("player_blue") as HTMLImageElement
+const PLAYER_POINTS_ORANGE = document.getElementById("player_orange") as HTMLImageElement
 const SLIDEOUT = document.getElementById("slide_out")
-const SLIDEOUT_IMG = document.getElementById("slideout_img") as HTMLImageElement | null
+const SLIDEOUT_IMG = document.getElementById("slideout_img") as HTMLImageElement
+const TITLE_WINNER = document.getElementById("winner_title") as HTMLTitleElement
+const WINNER_UPPER_TEXT = document.getElementById("winner_upper_text") as HTMLParagraphElement
 
 function initEndScreen() {
+    console.log(game_data);
+
     addOverviewContent()
 }
 
@@ -22,6 +26,11 @@ function addOverviewContent() {
     setBodyStyle()
     setMainStyle()
     setSlideOutStyle()
+    setWinnerTitle()
+
+    if (game_data.winner) {
+        SLIDEOUT?.classList.add(game_data.theme + "-" + game_data.winner.toString())
+    }
 }
 
 function setPlayerPoints() {
@@ -52,6 +61,21 @@ function setPlayerIcons() {
     } else {
         PLAYER_POINTS_BLUE!.src = returnPawnIcons()[0]
         PLAYER_POINTS_ORANGE!.src = returnPawnIcons()[1]
+    }
+}
+
+function setWinnerTitle() {
+    if (game_data.winner == "draw") {
+        WINNER_UPPER_TEXT.innerText = "It's a"
+        TITLE_WINNER.innerText = "DRAW"
+    } else {
+        WINNER_UPPER_TEXT.innerText = "The winner is"
+        TITLE_WINNER.innerText = game_data.winner?.toUpperCase() + " PLAYER"
+
+        if (game_data.theme == "code-vibe") {
+            let confetti = document.querySelector("confetti") as HTMLImageElement
+                confetti.style.display = "block"
+        }
     }
 }
 
