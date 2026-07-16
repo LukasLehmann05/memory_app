@@ -236,6 +236,9 @@ function checkCardMatch() {
     nextPlayer()
 }
 
+/**
+ * Clear open cards array
+ */
 function clearOpenCards() {
     while (OPENCARDS.length > 0) {
         OPENCARDS.pop()

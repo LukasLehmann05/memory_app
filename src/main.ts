@@ -33,6 +33,9 @@ const PREVIEW_BY_THEME: Record<string, string> = {
     "DA-Project": "theme-projects"
 }
 
+/**
+ * Gets called on document load, inits other functions
+ */
 function init() {
     initThemePreviewHover()
     showThemePreview(selectedTheme)
@@ -244,6 +247,9 @@ function setSelectedBoardSize() {
     }
 }
 
+/**
+ * Sets default selection
+ */
 function setDefaultSelection() {
     addToLocalStorage("theme", "code-vibe")
     addToLocalStorage("player", "blue")
