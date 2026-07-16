@@ -45,6 +45,7 @@
     flex-direction: column;
     gap: 12px;
     margin-top: 16px;
+    padding-left: 0px
 }
 
 .select-option {
@@ -53,14 +54,16 @@
     padding-left: 44px;
 
     .selector {
-        height: 16px;
-        width: 16px;
+        min-height: 16px;
+        min-width: 16px;
         border: solid black 2px;
         border-radius: 50%;
+        cursor: pointer;
     }
 
     p {
         font-size: 20px;
+        cursor: pointer;
     }
 
     .active-selected {
@@ -131,6 +134,8 @@
     font-size: 20px;
     align-items: center;
     margin-top: 45px;
+    width: 460px;
+    justify-content: flex-end;
 
     .separator {
         width: 8px;

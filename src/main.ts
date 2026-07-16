@@ -23,10 +23,10 @@ import { returnThemeName } from './script/theme_data'
 import { returnPlayerName } from './script/theme_data'
 import { returnBoardCardAmount } from './script/theme_data'
 
-const allThemes: string[] = ["code-vibe", "food", "DA-Project", "gaming"]
-const allPlayer: string[] = ["blue", "orange"]
-const allSize: string[] = ["s", "m", "l"]
-const previewByTheme: Record<string, string> = {
+const ALLTHEMES: string[] = ["code-vibe", "food", "DA-Project", "gaming"]
+const ALLPLAYER: string[] = ["blue", "orange"]
+const ALLSIZE: string[] = ["s", "m", "l"]
+const PREVIEW_BY_THEME: Record<string, string> = {
     "code-vibe": "theme-code",
     "gaming": "theme-gaming",
     "food": "theme-food",
@@ -40,6 +40,7 @@ function init() {
     setSelectedTheme()
     setSelectedPlayer()
     setSelectedBoardSize()
+    setDefaultSelection()
 }
 
 /**
@@ -47,7 +48,7 @@ function init() {
  * @param theme Theme key to apply.
  */
 function selectTheme(theme: string) {
-    if (allThemes.includes(theme)) {
+    if (ALLTHEMES.includes(theme)) {
         removeMarker("theme", selectedTheme)
         selectedTheme = theme
         displaySelected(theme, "theme")
@@ -63,7 +64,7 @@ function selectTheme(theme: string) {
  * @param player Player key to apply.
  */
 function selectPlayer(player: string) {
-    if (allPlayer.includes(player)) {
+    if (ALLPLAYER.includes(player)) {
         removeMarker("player", selectedPlayer)
         selectedPlayer = player
         displaySelected(player, "player")
@@ -78,7 +79,7 @@ function selectPlayer(player: string) {
  * @param amount Board size key (s, m, l).
  */
 function selectBoardSize(amount: string) {
-    if (allSize.includes(amount)) {
+    if (ALLSIZE.includes(amount)) {
         removeMarker("size", fieldSizeRaw)
         fieldSizeRaw = amount
         displaySelected(amount, "size")
@@ -109,7 +110,7 @@ function displaySelected(id: string, group: string) {
  * @param id Selected player id.
  */
 function removeOldPlayer(id: string) {
-    allPlayer.forEach(player => {
+    ALLPLAYER.forEach(player => {
         if (id !== player) {
             let elementToCheck = document.getElementById(player)
             if (elementToCheck?.classList.contains("selected")) {
@@ -124,7 +125,7 @@ function removeOldPlayer(id: string) {
  * @param id Selected theme id.
  */
 function removeOldTheme(id: string) {
-    allThemes.forEach(theme => {
+    ALLTHEMES.forEach(theme => {
         if (id !== theme) {
             let elementToCheck = document.getElementById(theme)
             if (elementToCheck?.classList.contains("selected")) {
@@ -139,7 +140,7 @@ function removeOldTheme(id: string) {
  * @param id Selected size id.
  */
 function removeOldSize(id: string) {
-    allSize.forEach(size => {
+    ALLSIZE.forEach(size => {
         if (id !== size) {
             let elementToCheck = document.getElementById(size)
             if (elementToCheck?.classList.contains("selected")) {
@@ -155,9 +156,9 @@ function removeOldSize(id: string) {
  * @param item Selected option id.
  */
 function addMarker(group: string, item: string) {
-    let generatedID = group + "_" + item
-    let template = returnMarker(generatedID)
-    document.getElementById(item)!.innerHTML += template
+    const GENERATED_ID = group + "_" + item
+    const TEMPLATE = returnMarker(GENERATED_ID)
+    document.getElementById(item)!.innerHTML += TEMPLATE
 }
 
 /**
@@ -182,7 +183,7 @@ function initMarker() {
  * Adds hover interactions to preview theme cards.
  */
 function initThemePreviewHover() {
-    allThemes.forEach(theme => {
+    ALLTHEMES.forEach(theme => {
         const themeOption = document.getElementById(theme)
         if (!themeOption) {
             return
@@ -198,16 +199,16 @@ function initThemePreviewHover() {
  * @param theme Theme key whose preview should be shown.
  */
 function showThemePreview(theme: string) {
-    const activePreviewId = previewByTheme[theme]
-    if (!activePreviewId) {
+    const ACTIVE_PREVIEW_ID = PREVIEW_BY_THEME[theme]
+    if (!ACTIVE_PREVIEW_ID) {
         return
     }
 
-    Object.values(previewByTheme).forEach(previewId => {
+    Object.values(PREVIEW_BY_THEME).forEach(previewId => {
         document.getElementById(previewId)?.classList.remove("current")
     })
 
-    document.getElementById(activePreviewId)?.classList.add("current")
+    document.getElementById(ACTIVE_PREVIEW_ID)?.classList.add("current")
 }
 
 /**
@@ -241,6 +242,12 @@ function setSelectedBoardSize() {
     if (SELECTION_SIZE) {
         SELECTION_SIZE.innerText = returnBoardCardAmount(fieldSizeRaw)
     }
+}
+
+function setDefaultSelection() {
+    addToLocalStorage("theme", "code-vibe")
+    addToLocalStorage("player", "blue")
+    addToLocalStorage("size", "s")
 }
 
 window.selectTheme = selectTheme

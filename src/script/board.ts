@@ -26,15 +26,15 @@ let starterPlayer: string
 let starterSizeRaw
 let starterSize: number
 
-let openCards: HTMLElement[] = []
-let lockedCards: HTMLElement[] = []
+const OPENCARDS: HTMLElement[] = []
+const LOCKEDCARDS: HTMLElement[] = []
 
 let currentPlayer = ""
 
 let pointsBlue = 0
 let pointsOrange = 0
 let winner: string
-const devMode = false
+const DEVMODE = false
 
 const ICONHEADER = document.getElementById("player_icon") as HTMLImageElement | null
 const POINTS_BLUE = document.getElementById("points_blue")
@@ -81,7 +81,7 @@ function getStarterSize(size: string | null) {
             starterSize = 24
             break;
         case "l":
-            starterSize = 36
+            starterSize = 32
             break;
         default:
             starterSize = 16
@@ -112,16 +112,29 @@ function setPlayerIcon() {
  * Creates the board DOM using a shuffled deck.
  */
 function buildBoard() {
-    let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme, devMode)
+    let cardPairs: string[] = returnCardPair(starterSize / 2, starterTheme, DEVMODE)
     let deck: string[] = []
 
     for (let i = 1; i < cardPairs.length; i++) {
         deck.push(cardPairs[i], cardPairs[i])
     }
 
+    buildShuffledBoard(deck)
+
+    if (starterSize > 16) {
+        document.getElementById("card_container")?.classList.add("grid-big")
+    }
+
+    initPlayerIcon()
+}
+
+/**
+ * Shuffles the card deck and builds the board.
+ */
+function buildShuffledBoard(deck :string[]) {
     let shuffledDeck = [...deck]
 
-    if (!devMode) {
+    if (!DEVMODE) {
         shuffledDeck = shuffleCards(deck)
         let tries = 0
 
@@ -134,12 +147,6 @@ function buildBoard() {
     shuffledDeck.forEach((cardPath, index) => {
         new Card(starterTheme, cardPath, `${index + 1}`)
     })
-
-    if (starterSize > 16) {
-        document.getElementById("card_container")?.classList.add("grid-big")
-    }
-
-    initPlayerIcon()
 }
 
 /**
@@ -152,7 +159,7 @@ function shuffleCards(cards: string[]) {
 
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+            ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
 
     return shuffled
@@ -196,11 +203,11 @@ function initPlayerIcon() {
  */
 function toggle_card(id: string) {
     let card = document.getElementById(id)
-    if (card && !lockedCards.includes(card)) {
-        openCards.push(card)
+    if (card && !LOCKEDCARDS.includes(card)) {
+        OPENCARDS.push(card)
         card?.classList.toggle("flip-card")
 
-        if (openCards.length == 2) {
+        if (OPENCARDS.length == 2) {
             checkCardMatch()
         }
     }
@@ -210,8 +217,8 @@ function toggle_card(id: string) {
  * Compares the two open cards and routes to the matching outcome.
  */
 function checkCardMatch() {
-    const FIRST_CARD: HTMLElement = openCards[0]
-    const SECOND_CARD: HTMLElement = openCards[1]
+    const FIRST_CARD: HTMLElement = OPENCARDS[0]
+    const SECOND_CARD: HTMLElement = OPENCARDS[1]
     const firstBackImage = FIRST_CARD.querySelector<HTMLImageElement>(".card__face--back")
     const secondBackImage = SECOND_CARD.querySelector<HTMLImageElement>(".card__face--back")
 
@@ -225,18 +232,24 @@ function checkCardMatch() {
     }
 
     console.log(currentPlayer);
-    
+
     nextPlayer()
+}
+
+function clearOpenCards() {
+    while (OPENCARDS.length > 0) {
+        OPENCARDS.pop()
+    }
 }
 
 /**
  * Locks matched cards and updates score/end-state checks.
  */
 function cardMatch() {
-    lockedCards.push(openCards[0])
-    lockedCards.push(openCards[1])
+    LOCKEDCARDS.push(OPENCARDS[0])
+    LOCKEDCARDS.push(OPENCARDS[1])
 
-    openCards = []
+    clearOpenCards()
 
     awardPoint()
     checkForGameEnd()
@@ -247,11 +260,11 @@ function cardMatch() {
  */
 function cardsNotMatch() {
     setTimeout(() => {
-        openCards.forEach(card => {
+        OPENCARDS.forEach(card => {
             card.classList.toggle("flip-card")
         });
 
-        openCards = []
+        clearOpenCards()
     }, 500);
 }
 
@@ -310,7 +323,7 @@ function setWinner() {
  * Persists match result and navigates to end screen when board is complete.
  */
 function checkForGameEnd() {
-    if (starterSize === lockedCards.length) {
+    if (starterSize === LOCKEDCARDS.length) {
         setWinner()
         addToLocalStorage("points_blue", pointsBlue.toString())
         addToLocalStorage("points_orange", pointsOrange.toString())
@@ -392,7 +405,7 @@ function closeOverlay() {
  * Returns to the landing page.
  */
 function quitGame() {
-    window.location.href = "../index.html"
+    window.location.href = "./settings.html"
 }
 
 if (document.body.classList.contains("body-board")) {

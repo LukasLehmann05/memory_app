@@ -16,12 +16,12 @@ export function addToLocalStorage(group:string, value:string) {
  * @returns Tuple of theme, player, and board size key.
  */
 export function getFromLocalStorage() {
-    let theme = localStorage.getItem("theme")
-    let player = localStorage.getItem("player")
-    let size = localStorage.getItem("size")
+    const THEME = localStorage.getItem("theme")
+    const PLAYER = localStorage.getItem("player")
+    const SIZE = localStorage.getItem("size")
 
-    if (theme && player &&size) {
-        return [theme,player,size]
+    if (THEME && PLAYER &&SIZE) {
+        return [THEME,PLAYER,SIZE]
     } else {
         return ["code-vibe", "blue", "s"]
     }
@@ -32,12 +32,12 @@ export function getFromLocalStorage() {
  * @returns Winner, point totals, and starter theme.
  */
 export function getMatchData() {
-    let Data = {
+    const DATA = {
         winner: localStorage.getItem("winner"),
         points_blue: localStorage.getItem("points_blue"),
         points_orange: localStorage.getItem("points_orange"),
         theme: localStorage.getItem("starter_theme")
     }
 
-    return Data
+    return DATA
 }
