@@ -81,7 +81,7 @@ function getStarterSize(size: string | null) {
             starterSize = 24
             break;
         case "l":
-            starterSize = 32
+            starterSize = 30
             break;
         default:
             starterSize = 16
@@ -230,8 +230,6 @@ function checkCardMatch() {
             cardsNotMatch()
         }
     }
-
-    console.log(currentPlayer);
 
     nextPlayer()
 }

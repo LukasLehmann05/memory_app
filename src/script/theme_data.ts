@@ -199,24 +199,18 @@ export function returnCardPair(amount: number, theme: string | null, devMode = f
 function requestCardPair(amount: number, array: string[], devMode = false) {
     const SELECTEDCARDS: string[] = []
     const CARD_POOL = array
-
     if (devMode) {
         for (let i = 0; i <= amount; i++) {
             SELECTEDCARDS.push(array[i % array.length])
         }
-
         return SELECTEDCARDS
     }
-
-    for (let i = 0; i < amount; i++) {
+    for (let i = 0; i <= amount; i++) {
         let randomCard = CARD_POOL[Math.floor(Math.random() * CARD_POOL.length)]
         const CARD_TO_REMOVE = CARD_POOL.indexOf(randomCard)
         CARD_POOL.splice(CARD_TO_REMOVE,1)
-        console.log(randomCard);
-        
         SELECTEDCARDS.push(randomCard)
     }
-
     return SELECTEDCARDS
 }
 
