@@ -11,6 +11,7 @@
 .header-board {
     margin-top: 41px;
     @include mx.flex-between;
+    @include mx.content-limit;
     align-items: flex-end;
     padding: 0px 112px;
     margin-bottom: 54px;

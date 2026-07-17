@@ -166,3 +166,7 @@
     flex-direction: column;
     align-items: flex-end;
 }
+
+main {
+    @include mx.content-limit
+}
