@@ -40,6 +40,9 @@ const ICONHEADER = document.getElementById("player_icon") as HTMLImageElement | 
 const POINTS_BLUE = document.getElementById("points_blue")
 const POINTS_ORANGE = document.getElementById("points_orange")
 const OVERLAY = document.getElementById("board_overlay") as HTMLDialogElement
+const COOLDOWN_TIME = 250
+
+let cooldown = new Date()
 
 /**
  * Initializes board state and theme-specific styling.
@@ -62,6 +65,7 @@ function getBoardData() {
 
     starterTheme = data[0]
     starterPlayer = data[1]
+
     currentPlayer = starterPlayer
     starterSizeRaw = data[2]
     getStarterSize(data[2])
@@ -90,16 +94,28 @@ function getStarterSize(size: string | null) {
 }
 
 /**
+ *  Checks if the cooldown is done
+ * @returns return true if the cooldown has passed, false otherwise
+ */
+function checkCooldown() {
+    const NEW_TIME = new Date()
+    if (NEW_TIME.getTime() - cooldown.getTime() >= COOLDOWN_TIME) {
+        cooldown = NEW_TIME
+        return true
+    }
+
+    return false
+}
+
+/**
  * Updates the current player header icon based on active theme.
  */
 function setPlayerIcon() {
     if (starterTheme == "code-vibe" && ICONHEADER) {
         if (currentPlayer == "blue") {
-            currentPlayer = "orange"
-            ICONHEADER.src = returnCodeVibe()[1]
-        } else if (currentPlayer == "orange" && ICONHEADER) {
-            currentPlayer = "blue"
             ICONHEADER.src = returnCodeVibe()[0]
+        } else if (currentPlayer == "orange" && ICONHEADER) {
+            ICONHEADER.src = returnCodeVibe()[1]
         }
     } else {
         if (ICONHEADER) {
@@ -131,7 +147,7 @@ function buildBoard() {
 /**
  * Shuffles the card deck and builds the board.
  */
-function buildShuffledBoard(deck :string[]) {
+function buildShuffledBoard(deck: string[]) {
     let shuffledDeck = [...deck]
 
     if (!DEVMODE) {
@@ -202,13 +218,15 @@ function initPlayerIcon() {
  * @param id Card button id.
  */
 function toggle_card(id: string) {
-    let card = document.getElementById(id)
-    if (card && !LOCKEDCARDS.includes(card)) {
-        OPENCARDS.push(card)
-        card?.classList.toggle("flip-card")
+    if (checkCooldown()) {
+        let card = document.getElementById(id)
+        if (card && !LOCKEDCARDS.includes(card)) {
+            OPENCARDS.push(card)
+            card?.classList.toggle("flip-card")
 
-        if (OPENCARDS.length == 2) {
-            checkCardMatch()
+            if (OPENCARDS.length == 2) {
+                checkCardMatch()
+            }
         }
     }
 }
@@ -228,10 +246,9 @@ function checkCardMatch() {
             cardMatch()
         } else {
             cardsNotMatch()
+            nextPlayer()
         }
     }
-
-    nextPlayer()
 }
 
 /**
@@ -292,19 +309,31 @@ function awardPoint() {
 function nextPlayer() {
     setTimeout(() => {
         if (starterTheme == "code-vibe") {
-            setPlayerIcon()
-        } else {
             if (currentPlayer == "blue") {
                 currentPlayer = "orange"
-                ICONHEADER?.classList.add("player-orange")
-                ICONHEADER?.classList.remove("player-blue")
             } else {
                 currentPlayer = "blue"
-                ICONHEADER?.classList.remove("player-orange")
-                ICONHEADER?.classList.add("player-blue")
             }
+            setPlayerIcon()
+        } else {
+            setNewPlayer()
         }
     }, 300);
+}
+
+/**
+ * Sets the new player
+ */
+function setNewPlayer() {
+    if (currentPlayer == "blue") {
+        currentPlayer = "orange"
+        ICONHEADER?.classList.add("player-orange")
+        ICONHEADER?.classList.remove("player-blue")
+    } else {
+        currentPlayer = "blue"
+        ICONHEADER?.classList.remove("player-orange")
+        ICONHEADER?.classList.add("player-blue")
+    }
 }
 
 /**
