@@ -47,6 +47,3 @@ with Typescript, SCCS and Vite.
    - After a match, you have the option to go back to the home menu, to start a new game
    - You can also leave your current match that is still ongoing, taking you back to the settings
 
-## Copyright
-
-MIT LICENSE
